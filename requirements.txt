@@ -1,0 +1,4 @@
+libcst==1.8.6
+Markdown==3.10.2
+python-dotenv==1.2.2
+repoagent==0.2.0
