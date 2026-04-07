@@ -1,1 +1,6 @@
 .env
+logs
+repos
+repoagent_*/
+osa_*/
+*.json
