@@ -1,13 +1,12 @@
 import ast
 from pathlib import Path
-from typing import Dict, List
 
 
 class RepoExtractor:
-    def __init__(self, repo_path: Path):
+    def __init__(self, repo_path):
         self.repo_path = Path(repo_path)
 
-    def extract(self) -> Dict[str, List[dict]]:
+    def extract(self):
         data = {}
 
         for py_file in self.repo_path.rglob("*.py"):
@@ -25,45 +24,32 @@ class RepoExtractor:
 
 
 class _ASTVisitor(ast.NodeVisitor):
-    def __init__(self, source: str):
+    def __init__(self, source):
         self.source = source
         self.items = []
-
-        # стек классов
         self.class_stack = []
 
-    # --- Classes ---
-    def visit_ClassDef(self, node: ast.ClassDef):
+    def visit_ClassDef(self, node):
         self.class_stack.append(node.name)
-
-        # можно добавить docstring класса (опционально)
-        # doc = ast.get_docstring(node)
-
         self.generic_visit(node)
-
         self.class_stack.pop()
 
-    def visit_FunctionDef(self, node: ast.FunctionDef):
-        self._handle_function(node)
+    def visit_FunctionDef(self, node):
+        self._handle(node)
         self.generic_visit(node)
 
-    def visit_AsyncFunctionDef(self, node: ast.AsyncFunctionDef):
-        self._handle_function(node)
+    def visit_AsyncFunctionDef(self, node):
+        self._handle(node)
         self.generic_visit(node)
 
-    def _handle_function(self, node):
-        # формируем полный путь
+    def _handle(self, node):
         if self.class_stack:
-            class_path = ".".join(self.class_stack)
-            method_id = f"{class_path}.{node.name}"
+            method_id = ".".join(self.class_stack) + f".{node.name}"
         else:
             method_id = node.name
 
-        doc = ast.get_docstring(node)
-        code = ast.get_source_segment(self.source, node)
-
         self.items.append({
             "id": method_id,
-            "code": code,
-            "doc": doc
+            "code": ast.get_source_segment(self.source, node),
+            "doc": ast.get_docstring(node)
         })
