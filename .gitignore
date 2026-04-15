@@ -4,3 +4,4 @@ repos
 repoagent_*/
 osa_*/
 *.json
+*.txt

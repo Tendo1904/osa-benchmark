@@ -54,7 +54,7 @@ Return ONLY JSON:
         js = extract_json(raw)
         parsed = safe_parse(js)
 
-        if parsed:
+        if isinstance(parsed, dict):
             return parsed.get("winner")
 
         return None
