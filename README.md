@@ -67,7 +67,7 @@ repos → extraction → merge → generation → evaluation → metrics → vis
 ```
 Coverage = documented_methods / total_methods
 ```
-![Coverage](https://latex.codecogs.com/svg.image?Coverage=\frac{N_{documented}}{N_{total}})
+![Coverage](https://latex.codecogs.com/svg.image?\bg_black\color{white}Coverage=\frac{N_{documented}}{N_{total}})
 
 ---
 
@@ -78,7 +78,7 @@ Semantic similarity to ground truth:
 ```
 BERTScore = avg(similarity(predicted, reference))
 ```
-![BERTScore](https://latex.codecogs.com/svg.image?BERTScore=\frac{1}{N}\sum_{i=1}^{N}sim(pred_i,ref_i))
+![BERTScore](https://latex.codecogs.com/svg.image?\bg_black\color{white}BERTScore=\frac{1}{N}\sum_{i=1}^{N}sim(pred_i,ref_i))
 
 ---
 
@@ -87,7 +87,7 @@ BERTScore = avg(similarity(predicted, reference))
 ```
 P(A > B) = wins(A) / (wins(A) + wins(B))
 ```
-![Pairwise](https://latex.codecogs.com/svg.image?P(A>B)=\frac{wins(A)}{wins(A)+wins(B)})
+![Pairwise](https://latex.codecogs.com/svg.image?\bg_black\color{white}P(A>B)=\frac{wins(A)}{wins(A)+wins(B)})
 ---
 
 ### 4. LLM Judge
@@ -102,7 +102,7 @@ Evaluates:
 ```
 Score = average(criteria)
 ```
-![Score](https://latex.codecogs.com/svg.image?Score=\frac{1}{4}\sum_{i=1}^{4}metric_i)
+![Score](https://latex.codecogs.com/svg.image?\bg_black\color{white}Score=\frac{1}{4}\sum_{i=1}^{4}metric_i)
 ---
 
 ## 🚀 Features
